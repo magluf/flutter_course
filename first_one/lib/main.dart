@@ -22,7 +22,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    var questions = [
+    const questions = [
       {
         "questionText": "What's your favourite colour?",
         "answers": ["Black", "Yellow", "Red", "Blue"],
@@ -48,7 +48,7 @@ class _MyAppState extends State<MyApp> {
             ),
             ...(questions[questionIndex]['answers'] as List).map((answer) {
               return Answer(_answerQuestion, answer);
-            }),
+            }).toList(),
           ],
         ),
       ),
