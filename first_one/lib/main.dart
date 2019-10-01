@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import './question.dart';
-import './answer.dart';
+import './quiz.dart';
+import './result.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,46 +11,44 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var questionIndex = 0;
+  var _questionIndex = 0;
+  final _questions = const [
+    {
+      "questionText": "What's your favourite colour?",
+      "answers": ["Black", "Yellow", "Red", "Blue"],
+    },
+    {
+      "questionText": "What's your favourite food?",
+      "answers": ["Pasta", "Skittles", "Cake", "Pizza"],
+    },
+    {
+      "questionText": "What's your favourite animal?",
+      "answers": ["Leopard", "Cat", "Tiger", "Lion"],
+    },
+  ];
 
   void _answerQuestion() {
+    if (_questionIndex < _questions.length) {}
     setState(() {
-      questionIndex++;
+      _questionIndex++;
     });
-    print(questionIndex);
+    print(_questionIndex);
   }
 
   @override
   Widget build(BuildContext context) {
-    const questions = [
-      {
-        "questionText": "What's your favourite colour?",
-        "answers": ["Black", "Yellow", "Red", "Blue"],
-      },
-      {
-        "questionText": "What's your favourite food?",
-        "answers": ["Pasta", "Skittles", "Cake", "Pizza"],
-      },
-      {
-        "questionText": "What's your favourite animal?",
-        "answers": ["Leopard", "Cat", "Tiger", "Lion"],
-      },
-    ];
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: Text('My First App booyah'),
         ),
-        body: Column(
-          children: [
-            Question(
-              questions[questionIndex]['questionText'],
-            ),
-            ...(questions[questionIndex]['answers'] as List).map((answer) {
-              return Answer(_answerQuestion, answer);
-            }).toList(),
-          ],
-        ),
+        body: _questionIndex < _questions.length
+            ? Quiz(
+                answerQuestion: _answerQuestion,
+                questionIndex: _questionIndex,
+                questions: _questions,
+              )
+            : Result(),
       ),
     );
   }
