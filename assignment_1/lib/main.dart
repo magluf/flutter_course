@@ -1,4 +1,7 @@
+import 'package:assignment_1/dynamic_text.dart';
 import 'package:flutter/material.dart';
+
+import 'package:assignment_1/text_control.dart';
 
 void main() => runApp(App());
 
@@ -25,17 +28,13 @@ class _AppState extends State<App> {
         ),
         body: Column(
           children: [
-            Text(_text),
-            Container(
-              width: double.infinity,
-              child: RaisedButton(
-                color: Colors.blue,
-                textColor: Colors.white,
-                child: Text('Press me, bitch.'),
-                onPressed: () {
-                  changeText('BYE!');
-                },
-              ),
+            DynamicText(
+              text: _text,
+            ),
+            TextControl(
+              changeTextHandler: () {
+                changeText('BYE!');
+              },
             ),
           ],
         ),
