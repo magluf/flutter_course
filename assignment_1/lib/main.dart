@@ -1,6 +1,6 @@
-import 'package:assignment_1/dynamic_text.dart';
 import 'package:flutter/material.dart';
 
+import 'package:assignment_1/dynamic_text.dart';
 import 'package:assignment_1/text_control.dart';
 
 void main() => runApp(App());
